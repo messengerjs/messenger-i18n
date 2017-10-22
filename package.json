@@ -1,0 +1,111 @@
+{
+  "name": "messenger-i18n",
+  "description": "🙊 Make your Messenger Bot speak your user’s language",
+  "version": "1.0.0",
+  "author":
+    "Andreas Pizsa <hopster@gmail.com> (https://github.com/AndreasPizsa)",
+  "bugs": {
+    "url": "https://github.com/AndreasPizsa/messenger-i18n/issues",
+    "email": "hopster@gmail.com"
+  },
+  "contributors": [
+    "Andreas Pizsa <hopster@gmail.com> (https://github.com/AndreasPizsa)"
+  ],
+  "dependencies": {
+    "app-root-path": "^2.0.1",
+    "intl": "^1.2.5",
+    "intl-locales-supported": "^1.0.0",
+    "intl-messageformat": "^2.1.0",
+    "lodash.get": "^4.4.2",
+    "lodash.memoize": "^4.1.2"
+  },
+  "ava": {
+    "failFast": true,
+    "verbose": true
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^4.2.1",
+    "@commitlint/config-angular": "^4.2.1",
+    "auto-bind": "^1.1.0",
+    "ava": "^0.22.0",
+    "codecov": "^2.3.0",
+    "cross-env": "^5.0.5",
+    "eslint": "^4.5.0",
+    "eslint-config-prettier": "^2.3.0",
+    "eslint-plugin-prettier": "^2.2.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^4.0.4",
+    "nyc": "^11.1.0",
+    "prettier": "^1.6.1",
+    "remark-cli": "^4.0.0",
+    "remark-preset-github": "^0.0.6",
+    "xo": "^0.19.0"
+  },
+  "engines": {
+    "node": ">=8.3"
+  },
+  "homepage": "https://github.com/AndreasPizsa/messenger-i18n",
+  "keywords": ["messenger", "i18n"],
+  "license": "MIT",
+  "lint-staged": {
+    "*.{js,jsx,mjs,ts,tsx,css,less,scss,json,graphql}": [
+      "prettier --write --single-quote --trailing-comma none --no-semi",
+      "git add"
+    ],
+    "*.md": ["remark . -qfo", "git add"]
+  },
+  "main": "index.js",
+  "nyc": {
+    "check-coverage": true,
+    "lines": 100,
+    "functions": 100,
+    "branches": 100,
+    "reporter": ["lcov", "html", "text"]
+  },
+  "remarkConfig": {
+    "plugins": ["preset-github"]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AndreasPizsa/messenger-i18n"
+  },
+  "scripts": {
+    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
+    "lint": "xo && remark . -qfo",
+    "precommit": "lint-staged && npm test",
+    "test": "npm run lint && npm run test-coverage",
+    "test-coverage": "cross-env NODE_ENV=test nyc ava"
+  },
+  "xo": {
+    "extends": "prettier",
+    "plugins": ["prettier"],
+    "parserOptions": {
+      "sourceType": "script"
+    },
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "singleQuote": true,
+          "bracketSpacing": true,
+          "trailingComma": "none",
+          "semi": false
+        }
+      ],
+      "max-len": [
+        "error",
+        {
+          "code": 80,
+          "ignoreUrls": true
+        }
+      ],
+      "capitalized-comments": "off",
+      "camelcase": "off",
+      "no-warning-comments": "off"
+    },
+    "space": true
+  },
+  "commitlint": {
+    "extends": ["canonical"]
+  }
+}
